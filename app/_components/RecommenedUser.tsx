@@ -37,7 +37,7 @@ export const RecommenedUserSkeleton = () => {
     <ul className=' px-2 '>
       {[...Array(3)].map((_, index) => {
         return (
-          <div>
+          <div key={index}>
             <UserItemSkeleton key={index} />
           </div>
         )

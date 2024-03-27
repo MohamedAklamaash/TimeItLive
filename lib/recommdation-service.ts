@@ -14,10 +14,24 @@ export const getReccommendedUsers = async () => {
     if (userId) {
         users = await prisma?.user.findMany({
             where: {
-                NOT: {
-                    id: userId,
-                }
-            }
+                AND: [
+                    {
+                        NOT: {
+                            id: userId,
+                        },
+
+                    },
+                    {
+                        NOT: {
+                            followedBy: {
+                                some: {
+                                    followerId: userId
+                                }
+                            }
+                        }
+                    }
+                ],
+            },
         })
     } else {
         users = await db.user.findMany({
