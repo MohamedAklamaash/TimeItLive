@@ -4,6 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { HintProps } from '@/types'
 
 export const Hint = ({children,label,align,asChild,side}:HintProps)=>{
     return(

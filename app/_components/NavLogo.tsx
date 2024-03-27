@@ -8,6 +8,7 @@ const font = Poppins({
   subsets: ['latin'],
   weight: ['600', '200', '300', '400', '500', '700', '800'],
 })
+
 export default function NavLogo() {
   return (
     <div>
@@ -18,7 +19,7 @@ export default function NavLogo() {
           </div>
           <div className={cn(font.className,"max-lg:hidden")}>
             <p className=' text-lg font-semibold '>TIME IT!</p>
-            <p className=' text-xs text-muted-foreground '>Let's Play</p>
+            <p className=' text-xs text-muted-foreground '>Let &apos Play</p>
           </div>
         </div>
       </Link>

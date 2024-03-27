@@ -9,7 +9,9 @@ async function Actions() {
       {!user && (
         <>
           <SignInButton>
-            <Button size="sm" variant='ghost'>Login</Button>
+            <Button size='sm' variant='ghost'>
+              Login
+            </Button>
           </SignInButton>
         </>
       )}

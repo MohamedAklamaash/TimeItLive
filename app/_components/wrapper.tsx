@@ -2,9 +2,9 @@
 import { useSidebar } from '@/store/use-sidebar'
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { Wrapper } from '@/types'
 export default function wrapper({ children }: Wrapper) {
   const { collapsed } = useSidebar((state) => state)
-  console.log(collapsed)
 
   return (
     <aside

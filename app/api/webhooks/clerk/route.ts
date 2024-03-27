@@ -3,7 +3,6 @@ import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { db } from '@/lib/db';
 export async function POST(req: Request) {
-  console.log("The function is being called");
 
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
@@ -50,7 +49,6 @@ export async function POST(req: Request) {
 
   // Get the ID and type
   const eventType = evt.type;
-  console.log(eventType);
 
   if (eventType === "user.created") {
     await db.user.create({

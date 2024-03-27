@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/store/use-sidebar'
+import { Wrapper } from '@/types'
 import { useEffect } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 export default function Container({ children }: Wrapper) {
@@ -15,7 +16,6 @@ export default function Container({ children }: Wrapper) {
       onExpand()
     }
   }, [matches, onCollapse, onExpand])
-  console.log(collapsed)
 
   return (
     <div
