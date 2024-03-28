@@ -14,13 +14,17 @@ export default async function UserPage({
     notFound()
   }
   const isfollowingUser = await isFollowingUser(user.id)
-  const isBlockedByUser = await isblockedByUser(user.id);
+  const isBlockedByUser = await isblockedByUser(user.id)
 
   return (
     <div>
       <p>User:{user?.id}</p>
       <p>{JSON.stringify(isfollowingUser)}</p>
-      <FollowAction userId={user.id} isBlocked={isBlockedByUser} isFollowing={isfollowingUser} />
+      <FollowAction
+        userId={user.id}
+        isBlocked={isBlockedByUser}
+        isFollowing={isfollowingUser}
+      />
     </div>
   )
 }

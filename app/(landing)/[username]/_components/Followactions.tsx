@@ -3,7 +3,6 @@
 import { onBlock, onUnBlock } from '@/actions/block'
 import { OnFollow, UnFollow } from '@/actions/follow'
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import { useEffect, useTransition } from 'react'
 import { toast } from 'sonner'
 export const FollowAction = ({
@@ -31,7 +30,7 @@ export const FollowAction = ({
     startTransition(async () => {
       await UnFollow(userId)
         .then((data) => {
-          toast.success(` You are now unFollowd The User `)
+          toast.success(` You have now unFollowed The User `)
         })
         .catch(() => {
           toast.error('Error in following the user')
@@ -48,10 +47,10 @@ export const FollowAction = ({
   const handleBlockUser = () => {
     startTransition(async () => {
       await onBlock(userId)
-        .then((d) => {
+        .then((data) => {
           toast.success(`You have successfully blocked the user`)
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error(`You can't block the user`)
         })
     })
@@ -60,30 +59,33 @@ export const FollowAction = ({
   const handleUnBlockUser = () => {
     startTransition(async () => {
       await onUnBlock(userId)
-        .then((d) => {
+        .then((data) => {
           toast.success(`You have successfully Unblocked the user`)
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error(`You can't unblock the user`)
         })
     })
   }
 
   const handleBlock = () => {
-    if (isBlocked) {
-      handleUnBlockUser()
-    }
     if (!isBlocked) {
       handleBlockUser()
     }
+    if (isBlocked) {
+      handleUnBlockUser()
+    }
   }
+  
   return (
     <>
       <Button onClick={onClick} variant='secondary'>
         {!isFollowing ? 'Follow' : 'UnFollow'}
       </Button>
+      <Button onClick={handleBlock} variant='secondary'>
+        {!isBlocked ? 'Block' : 'Unblock'}
+      </Button>
       {JSON.stringify(isBlocked)}
-      <Button onClick={handleBlock}>{isBlocked ? 'Unblock' : 'Block'}</Button>
     </>
   )
 }

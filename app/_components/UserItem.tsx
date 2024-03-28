@@ -28,7 +28,7 @@ export default function UserItem({
         isActive && 'bg-accent',
       )}
     >
-      <Link href={href}>
+      <Link prefetch href={href}>
         <div
           className={cn(
             ' flex items-center w-full gap-x-4 ',

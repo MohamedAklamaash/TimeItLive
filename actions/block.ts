@@ -5,11 +5,14 @@ import { revalidatePath } from 'next/cache'
 
 export const onBlock = async (id: string) => {
     try {
+
         const blockedUser = await blockUser(id)
+
         if (blockedUser) {
             revalidatePath(`/${blockedUser.blocked.username}`)
         }
-        return blockedUser
+
+        return blockedUser;
     } catch (error) { }
 }
 
