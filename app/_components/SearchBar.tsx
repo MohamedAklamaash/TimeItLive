@@ -14,7 +14,7 @@ function SearchBar() {
     e.preventDefault();
     if(!value) return;
     const url = qs.stringifyUrl({
-        url:"/search",
+        url:"/",
         query:{term:value}
     },{skipEmptyString:true});
 

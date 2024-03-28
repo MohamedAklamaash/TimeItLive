@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export default function LiveBadge({ className }: { classname?: string }) {
+export default function LiveBadge({ className }: { className: string }) {
   return (
     <div
       className={cn(

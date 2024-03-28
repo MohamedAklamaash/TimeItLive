@@ -24,7 +24,7 @@ export default function Following({ data }: FollowingProps) {
         {data.map((d, index) => {
           return (
             <UserItem
-              key={d.id}
+              key={d.id}  
               username={d.following.username}
               imageUrl={d.following.imageUrl}
               isLive={false}

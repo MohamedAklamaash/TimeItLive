@@ -8,7 +8,7 @@ export const OnFollow = async (id: string) => {
         const followedUser = await followUser(id)
         revalidatePath('/')
         if (followedUser) {
-            revalidatePath(`/${followedUser.following.username}`)
+            revalidatePath(`/${followedUser?.following.username}`)
         }
         return followUser
     } catch (error) { }

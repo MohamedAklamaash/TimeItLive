@@ -10,8 +10,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  // url = env("POSTGRES_PRISMA_URL")
+  url = env("DATABASE_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
@@ -24,6 +25,8 @@ model User {
   updated_At DateTime @updatedAt
   following Follow[] @relation("Following")
   followedBy Follow[] @relation("FollowedBy")
+  blocking Block[] @relation("Blocking")
+  blockedBy Block[] @relation("Blocked")
 }
 
 
@@ -31,7 +34,7 @@ model Follow {
   id String @id @default(uuid())
   followerId String
   followingId String
-
+  //follower 
   follower User @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
   following User @relation(name:"FollowedBy",fields: [followingId],references: [id],onDelete: Cascade)
   created_At DateTime @default(now())
@@ -39,4 +42,15 @@ model Follow {
   @@unique([followerId,followingId])
   @@index([followerId])
   @@index([followingId])
+}
+
+model Block {
+  id String @id @default(uuid())
+  blockerId String
+  blockedId String
+  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked User @relation(name: "Blocked", fields: [blockedId], references: [id], onDelete: Cascade)
+  @@unique([blockedId,blockerId])
+  @@index([blockedId])
+  @@index([blockerId])
 }

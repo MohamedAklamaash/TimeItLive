@@ -6,7 +6,7 @@ export const getReccommendedUsers = async () => {
     let userId
     try {
         const self = await getSelf()
-        userId = self.id
+        userId = self?.id
     } catch (error) {
         userId = null
     }

@@ -1,4 +1,4 @@
-"use server"
+'use server'
 import { db } from './db'
 import { getSelf } from './authService'
 
@@ -11,12 +11,12 @@ export const isFollowingUser = async (id: string) => {
         if (!otherUser) {
             throw new Error(`User ${id} does not exist `)
         }
-        if (otherUser.id === self.id) {
+        if (otherUser.id === self?.id) {
             return true
         }
         const existingFollow = await db.follow.findFirst({
             where: {
-                followerId: self.id,
+                followerId: self?.id,
                 followingId: otherUser.id,
             },
         })
@@ -34,12 +34,12 @@ export const followUser = async (id: string) => {
     if (!otherUser) {
         throw new Error(`User ${id} does not exist `)
     }
-    if (otherUser.id === self.id) {
-        throw new Error(`User cannot be followed by Himself ${self.id}`)
+    if (otherUser.id === self?.id) {
+        throw new Error(`User cannot be followed by Himself ${self?.id}`)
     }
     const existingFollow = await db.follow.findFirst({
         where: {
-            followerId: self.id,
+            followerId: self?.id,
             followingId: otherUser.id,
         },
     })
@@ -48,7 +48,7 @@ export const followUser = async (id: string) => {
     }
     const follow = await db.follow.create({
         data: {
-            followerId: self.id,
+            followerId: self?.id ?? '',
             followingId: otherUser.id,
         },
         include: {
@@ -56,6 +56,7 @@ export const followUser = async (id: string) => {
             following: true,
         },
     })
+
     return follow
 }
 
@@ -69,13 +70,15 @@ export const Unfollow = async (id: string) => {
     if (!otherUser) {
         throw new Error('User not found')
     }
-    if (self.id === otherUser.id) {
+    if (self?.id === otherUser.id) {
         throw new Error('Cannot follow Yourself')
     }
-    const existingFollow = await db.follow.findFirst({
+    const existingFollow = await db.follow.findUnique({
         where: {
-            followerId: self.id,
-            followingId: otherUser.id,
+            followerId_followingId: {
+                followerId: self?.id as string,
+                followingId: otherUser.id,
+            },
         },
     })
     if (!existingFollow) {
@@ -93,17 +96,17 @@ export const Unfollow = async (id: string) => {
 }
 
 export const getFollowedUsers = async () => {
-    const self = await getSelf();
+    const self = await getSelf()
     try {
         const followedUsers = await db.follow.findMany({
             where: {
-                followerId: self.id,
+                followerId: self?.id,
             },
             include: {
                 following: true,
-            }
-        });
-        return followedUsers;
+            },
+        })
+        return followedUsers
     } catch (error) {
         return []
     }
