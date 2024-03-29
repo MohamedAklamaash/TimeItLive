@@ -116,7 +116,7 @@ export const unblockUser = async (id: string) => {
     }
 }
 
-const areYouBlockedBySomeUser = async (id: string) => {
+export const areYouBlockedBySomeUser = async (id: string) => {
     try {
         const self = await getSelf()
         const otherUser = await db.user.findUnique({

@@ -4,7 +4,7 @@ import { UserPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import { FollowAction } from './_components/Followactions'
-import { isblockedByUser } from '@/lib/block-service'
+import {  isblockedByUser } from '@/lib/block-service'
 
 export default async function UserPage({
   params: { username },
@@ -15,7 +15,10 @@ export default async function UserPage({
   }
   const isfollowingUser = await isFollowingUser(user.id)
   const isBlockedByUser = await isblockedByUser(user.id)
-
+  // const isBlockedByOtherUser = await areYouBlockedBySomeUser(user.id)
+  // if(isBlockedByOtherUser){
+  //   notFound()
+  // }
   return (
     <div>
       <p>User:{user?.id}</p>
