@@ -35,3 +35,11 @@ interface UserPageProps {
         username: string
     }
 }
+
+type Field = "isChatFollowersOnly" | "isChatEnabled" | "isChatDelayed"
+interface ToggleCardProps {
+    field: Field
+    label: string
+    value: boolean
+}
+

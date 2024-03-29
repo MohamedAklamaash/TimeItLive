@@ -35,7 +35,7 @@ export default function DashBoardSideBarItems({
           <h1 className={cn('text-sm', collapsed && 'hidden')}>{label}</h1>
 
           {collapsed && (
-            <Hint label={label} side="right">
+            <Hint label={label} side='right'>
               <Icon />
             </Hint>
           )}

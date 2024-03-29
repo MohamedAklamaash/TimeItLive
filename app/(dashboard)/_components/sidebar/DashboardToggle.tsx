@@ -18,12 +18,12 @@ export default function DashboardToggle() {
         )}
         {collapsed && (
           <Hint label={label} side='right'>
-            <ArrowLeft onClick={() => onExpand()} />
+            <ArrowRight onClick={() => onExpand()} />
           </Hint>
         )}
         {!collapsed && (
           <Hint label={label} side='right'>
-            <ArrowRight onClick={() => onCollapse()} />
+            <ArrowLeft onClick={() => onCollapse()} />
           </Hint>
         )}
       </div>

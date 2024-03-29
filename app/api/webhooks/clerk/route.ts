@@ -60,10 +60,15 @@ export async function POST(req: Request) {
         externalUserid: payload.data.id,
         username: payload.data.username,
         imageUrl: payload.data.image_url,
+        stream: {
+          create: {
+            name: `${payload.data.username}'s stream`,
+          }
+        }
       },
     })
   }
-  if (eventType === 'user.created') {
+  if (eventType === "user.updated") {
     const currUser = await db.user.findUnique({
       where: {
         externalUserid: payload.data.id,
