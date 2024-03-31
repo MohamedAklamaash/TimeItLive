@@ -12,7 +12,6 @@ export default function ChatLoading() {
             <ToggleCardSkeleton/>
             <ToggleCardSkeleton/>
             <ToggleCardSkeleton/>
-
         </div>
     </div>
   )

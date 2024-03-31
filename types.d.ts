@@ -43,3 +43,7 @@ interface ToggleCardProps {
     value: boolean
 }
 
+
+interface URlCardProps {
+    value: string
+}
