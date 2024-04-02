@@ -9,7 +9,6 @@ import UserAvatar from '../../components/UserAvatar'
 import LiveBadge from '@/components/LiveBadge'
 
 export default function UserItem({
-  key,
   username,
   imageUrl,
   isLive,

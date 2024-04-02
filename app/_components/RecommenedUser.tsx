@@ -22,7 +22,7 @@ export default function RecommenedUsers({ data }: RecommdationService) {
                 key={d.id}
                 username={d.username}
                 imageUrl={d.imageUrl}
-                isLive={false}
+                isLive={d.stream?.isLive}
               />
             </div>
           )

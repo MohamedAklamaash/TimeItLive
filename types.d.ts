@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { Stream, User } from '@prisma/client'
 
 interface Wrapper {
     children: React.ReactNode
@@ -19,7 +19,9 @@ interface HintProps {
 }
 
 interface RecommdationService {
-    data: User[]
+    data: (User & {
+        stream: { isLive: boolean } | null
+    })[]
 }
 
 interface UserItemProps {
@@ -36,14 +38,35 @@ interface UserPageProps {
     }
 }
 
-type Field = "isChatFollowersOnly" | "isChatEnabled" | "isChatDelayed"
+type Field = 'isChatFollowersOnly' | 'isChatEnabled' | 'isChatDelayed'
 interface ToggleCardProps {
     field: Field
     label: string
     value: boolean
 }
 
-
 interface URlCardProps {
     value: string
+}
+
+interface StreamPlayerProps {
+    user?: (User & Stream | null)
+    stream: Stream
+    isFollowing: boolean
+}
+
+interface VideoComponentProps {
+    hostName?: string
+    hostIdentity?: string
+}
+
+interface FullScreenProps {
+    onToggle: () => void
+    isFullScreen: boolean
+}
+
+interface VolumeControlProps {
+    onToggle: () => void
+    onChange: (val: number) => void
+    value: number
 }

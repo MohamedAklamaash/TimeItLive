@@ -40,13 +40,30 @@ export const getReccommendedUsers = async () => {
                     },
                 ],
             },
-        })
-    } else {
-        users = await db.user.findMany({
+            include: {
+                stream: {
+                    select: {
+                        isLive: true
+                    }
+                },
+            },
             orderBy: {
                 username: 'desc',
             },
         })
+    } else {
+        try {
+            users = await db.user.findMany({
+                orderBy: {
+                    username: 'desc',
+                },
+                include: {
+                    stream: true,
+                },
+            })
+        } catch (error) {
+            throw new Error('error')
+        }
     }
     return users
 }

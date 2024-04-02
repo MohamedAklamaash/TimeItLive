@@ -9,9 +9,11 @@ export const updateStream = async (values: Partial<Stream>) => {
     try {
         const self = await getSelf()
         const selfstream = await getStreamByUserId(self?.id as string)
+
         if (!selfstream) {
             throw new Error('Stream not found')
         }
+
         const validData = {
             name: values.name,
             isChatEnabled: values.isChatEnabled,
