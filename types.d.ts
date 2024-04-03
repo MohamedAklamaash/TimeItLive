@@ -66,7 +66,7 @@ interface FullScreenProps {
 }
 
 interface VolumeControlProps {
-    onToggle: () => void
-    onChange: (val: number) => void
-    value: number
+    onChange: (value: number) => void;
+    onToggle: () => void;
+    value: number;
 }

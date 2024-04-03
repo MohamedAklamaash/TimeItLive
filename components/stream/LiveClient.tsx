@@ -1,8 +1,9 @@
+"use client"
 import { Participant, Track } from 'livekit-client'
 import { useRef, useState, useEffect } from 'react'
 import { useTracks } from '@livekit/components-react'
 import FullScreenControl from './FullScreenControl'
-import VolumeControl from './volumeControl'
+import VolumeControl from './VolumeControl'
 
 export default function LiveClient({
   participant,

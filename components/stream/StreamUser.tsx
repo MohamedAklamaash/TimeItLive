@@ -10,12 +10,11 @@ export default function StreamPlayer({
   isFollowing,
 }: StreamPlayerProps) {
   const { token, name, identity } = useViewerToken(user?.id as string)
-  console.log(identity)
 
   if (!token || !name || !identity) {
     return (
       <div>
-        <h1>Cannot Watch the div</h1>
+        <h1>Cannot Watch the Stream</h1>
       </div>
     )
   }

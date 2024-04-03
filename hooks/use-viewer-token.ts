@@ -16,7 +16,7 @@ export const useViewerToken = (hostIdentity: string) => {
 
                 const decodedToken = jwtDecode(viewerToken) as JwtPayload & {
                     name?: string
-                    jti?: string
+                    sub?: string
                 }
                 const { sub, name } = decodedToken
                 // using sub might not work cuz uniqueness is not supported at times
