@@ -17,7 +17,7 @@ export default function ChatHeader() {
   )
 }
 
-export const ChatSkeleton = () => {
+export const ChatHeaderSkeleton = () => {
   return (
     <div className=' relative p-3 border-b hidden md:block '>
       <Skeleton className=' absolute w-6 h-6 left-3 top-3 ' />

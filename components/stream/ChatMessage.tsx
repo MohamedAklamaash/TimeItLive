@@ -21,7 +21,7 @@ export default function ChatMessage({ data }: { data: ReceivedChatMessage }) {
             style={{color: color}}
             >
                 {data.from?.name }
-            </span>
+            </span>:
         </p>
         <p
         className=' text-sm break-all '

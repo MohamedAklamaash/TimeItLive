@@ -5,12 +5,13 @@ import {
   useRemoteParticipant,
 } from '@livekit/components-react'
 import { ConnectionState } from 'livekit-client'
-import React, { ChangeEventHandler, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
-import ChatHeader from './ChatHeader'
-import ChatForm from './ChatForm'
-import ChatList from './ChatList'
+import ChatHeader, { ChatHeaderSkeleton } from './ChatHeader'
+import ChatForm, { ChatFormSkeleton } from './ChatForm'
+import ChatList, { ChatListSkeleton } from './ChatList'
+import ChatCommunity from './ChatCommunity'
 
 function ChatComponent({
   viewerName,
@@ -59,40 +60,48 @@ function ChatComponent({
     setvalue('')
   }
 
-  const onChange = (value:string)=>{
-    setvalue(value);
+  const onChange = (value: string) => {
+    setvalue(value)
   }
 
-  return <div
-  className={` flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)] `}
-  >
-    <ChatHeader/>
-    {variant === ChatEnum.CHAT && (
-      <>
-      <ChatList
-        messages={reversedMessages}
-        isHidden = {isHidden }
-
-      />
-        <ChatForm
-        onSubmit={onSubmit}
-        value={value}
-        onChange={onChange}
-        isHidden={isHidden}
-        isFollowersOnly={isChatFollowersOnly}
-        isDelayed={isChatDelayed}
-        isFollowing={isFollowing}
+  return (
+    <div
+      className={` flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)] `}
+    >
+      <ChatHeader />
+      {variant === ChatEnum.CHAT && (
+        <>
+          <ChatList messages={reversedMessages} isHidden={isHidden} />
+          <ChatForm
+            onSubmit={onSubmit}
+            value={value}
+            onChange={onChange}
+            isHidden={isHidden}
+            isFollowersOnly={isChatFollowersOnly}
+            isDelayed={isChatDelayed}
+            isFollowing={isFollowing}
+          />
+        </>
+      )}
+      {variant === ChatEnum.COMMUNITY && (
+        <ChatCommunity
+          viewerName={viewerName}
+          hostName={hostName}
+          isHidden={isHidden}
         />
-      </>
-    )}
-    {
-      variant === ChatEnum.COMMUNITY && (
-        <div>
-          <p>Community Mode</p>
-        </div>
-      )
-    }
-  </div>
+      )}
+    </div>
+  )
 }
 
 export default ChatComponent
+
+export const ChatSkeleton = () => {
+  return (
+    <div className=' flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2 '>
+      <ChatHeaderSkeleton />
+      <ChatListSkeleton />
+      <ChatFormSkeleton />
+    </div>
+  )
+}

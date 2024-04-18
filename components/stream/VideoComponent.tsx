@@ -10,6 +10,7 @@ import {
 import OfflineVideo from './OfflineVideo'
 import LoadingVideo from './LoadingVideo'
 import LiveClient from './LiveClient'
+import { Skeleton } from '../ui/skeleton'
 export default function VideoComponent({
   hostIdentity,
   hostName,
@@ -29,4 +30,14 @@ export default function VideoComponent({
     content = <LiveClient participant={participant} />
   }
   return <div className=' aspect-video border-b group relative '>{content}</div>
+}
+
+export const VideoComponentSkeleton = ()=>{
+  return(
+    <div
+    className=' aspect-video border-x border-background '
+    >
+      <Skeleton className=' h-full w-full rounded-none ' />
+    </div>
+  )
 }
