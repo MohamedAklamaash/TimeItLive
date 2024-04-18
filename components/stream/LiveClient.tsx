@@ -83,7 +83,7 @@ export default function LiveClient({
       />
       <div className='absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all'>
         <div className='absolute bottom-0 flex h-14 w-full items-center justify-between bg-gradient-to-r from-neutral-900'>
-          <VolumeControl onChange={onVolumeChange} value={0} onToggle={toggleMute} />
+          <VolumeControl onChange={onVolumeChange} value={volume} onToggle={toggleMute} />
           <FullScreenControl
             isFullScreen={isFullScreen}
             onToggle={toggleFullScreen}

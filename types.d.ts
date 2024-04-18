@@ -70,3 +70,8 @@ interface VolumeControlProps {
     onToggle: () => void;
     value: number;
 }
+
+interface ChatInfoProps {
+    isDelayed: boolean
+    isFollowersOnly: boolean
+}

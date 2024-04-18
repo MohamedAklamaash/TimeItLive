@@ -20,8 +20,8 @@ export default function VolumeControl({
   const label = isMuted ? 'Unmute' : 'Mute'
   
 
-  const handleChange = (newValue: number) => {
-    onChange(newValue)
+  const handleChange = (newValue: number[]) => {
+    onChange(newValue[0])
   }
   
   return (
@@ -40,7 +40,6 @@ export default function VolumeControl({
         value={[value]} // Ensure to pass the single number value, not an array
         step={1}
         max={100}
-        min={0}
       />
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 import { VideoComponentProps } from '@/types'
-import React, { use } from 'react'
+import React from 'react'
 import { ConnectionState, Track } from 'livekit-client'
 import {
   useConnectionState,
