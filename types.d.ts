@@ -50,7 +50,10 @@ interface URlCardProps {
 }
 
 interface StreamPlayerProps {
-    user?: (User & Stream | null)
+    user: User & {
+        stream: Stream,
+        _count: { followedBy: number }
+    };
     stream: Stream
     isFollowing: boolean
 }

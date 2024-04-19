@@ -45,7 +45,7 @@ export default function UserAvatar({
       </Avatar>
       {canShowBadge && (
         <div className='  absolute transform -translate-x-1/2 left-1/2 '>
-          <LiveBadge classname='' />
+          <LiveBadge className='' />
         </div>
       )}
     </div>
@@ -54,6 +54,6 @@ export default function UserAvatar({
 
 interface UserAvatarSkeletonProps extends VariantProps<typeof avatarSizes> {}
 
-export const userSkeleton = ({ size }: UserAvatarSkeletonProps) => {
+export const UserAvatarSkeleton = ({ size }: UserAvatarSkeletonProps) => {
   return <Skeleton className={cn(' rounded-full ', avatarSizes({ size }))} />
 }

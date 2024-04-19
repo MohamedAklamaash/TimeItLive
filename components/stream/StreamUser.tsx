@@ -8,6 +8,9 @@ import { useChatSidebar } from '@/store/user-chat-sidebar'
 import { cn } from '@/lib/utils'
 import ChatComponent, { ChatSkeleton } from './ChatComponent'
 import ChatToggle from './ChatToggle'
+import Header, { HeaderSkeleton } from './Header'
+import InfoComponent from './InfoComponent'
+import AboutCard from './AboutCard'
 export default function StreamPlayer({
   user,
   stream,
@@ -18,7 +21,7 @@ export default function StreamPlayer({
   if (!token || !name || !identity) {
     return (
       <>
-        <StreamPlayerSkeleton/>
+        <StreamPlayerSkeleton />
       </>
     )
   }
@@ -39,12 +42,32 @@ export default function StreamPlayer({
       >
         <div className=' space-y-4 col-span-1 lg:col-span-2 2xl:col-span-5 lg:overflow-y-auto hidden-scrollbar pb-10 '>
           <VideoComponent hostIdentity={user?.id} hostName={user?.username} />
-          
+          <Header
+            hostIdentity={user?.id as string}
+            hostName={user?.username as string}
+            viewerIdentity={identity}
+            imageUrl={user?.imageUrl as string}
+            isFollowing={isFollowing}
+            name={stream.name}
+          />
+          <InfoComponent
+            hostIdentity={user?.id as string}
+            viewerIdentity={identity}
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl as string}
+          />
+          <AboutCard 
+          viewerIdentity={identity}
+          hostIdentity={user?.id as string}
+          hostName={user?.username as string}
+          bio={user?.bio as string}
+          followedByCount={0}
+          />
         </div>
         <div className={cn(`col-span-1`, collapsed && 'hidden')}>
           <ChatComponent
             viewerName={name}
-            hostName={user?.name as string}
+            hostName={user?.username as string}
             isFollowing={isFollowing}
             hostIdentity={user?.id as string}
             isChatEnabled={stream.isChatEnabled}
@@ -62,6 +85,7 @@ export const StreamPlayerSkeleton = () => {
     <div className='grid grid-cols-1 lg:gap-y-0 lg:grid-cols-3 2xl:grid-cols-6 h-full '>
       <div className=' space-y-4 col-span-1 lg:col-span-2 2xl:col-span-5 lg:overflow-y-auto hidden-scrollbar pb-10  '>
         <VideoComponentSkeleton />
+        <HeaderSkeleton />
       </div>
       <div className=' col-span-1 bg-background '>
         <ChatSkeleton />
