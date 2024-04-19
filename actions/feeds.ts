@@ -13,6 +13,22 @@ export const getStreams = async () => {
     }
     let streams = []
     if (userId) {
+        streams = await db.stream.findMany({
+            where: {
+                user: {
+                    NOT: {
+                        blocking: {
+                            some: {
+                                blockedId: userId,
+                            },
+                        },
+                    },
+                },
+            },
+            include: {
+                user: true
+            }
+        })
     } else {
         streams = await db.stream.findMany({
             include: {
@@ -28,4 +44,5 @@ export const getStreams = async () => {
             ],
         })
     }
+    return streams
 }
