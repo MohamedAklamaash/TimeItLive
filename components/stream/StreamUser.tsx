@@ -61,7 +61,7 @@ export default function StreamPlayer({
           hostIdentity={user?.id as string}
           hostName={user?.username as string}
           bio={user?.bio as string}
-          followedByCount={0}
+          followedByCount={user._count.followedBy}
           />
         </div>
         <div className={cn(`col-span-1`, collapsed && 'hidden')}>
