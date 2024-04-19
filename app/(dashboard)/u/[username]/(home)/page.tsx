@@ -7,9 +7,12 @@ import React, { use } from 'react'
 async function CreatorPage({ params: { username } }: UserPageProps) {
   const user = await getUserByName(username)
   const externalUser = await currentUser()
+  console.log(user,externalUser);
+  
   if (!user || externalUser?.id !== user?.externalUserid || !user.stream) {
     throw new Error('Unauthorized access')
   }
+  
   return (
     <div className=' h-full '>
       <StreamPlayer user={user} stream={user.stream} isFollowing={true} />

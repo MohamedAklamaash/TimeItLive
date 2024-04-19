@@ -1,32 +1,31 @@
+import StreamPlayer from '@/components/stream/StreamUser'
+import { isblockedByUser } from '@/lib/block-service'
 import { isFollowingUser } from '@/lib/follow-service'
 import { getUserByName } from '@/lib/user-service'
 import { UserPageProps } from '@/types'
 import { notFound } from 'next/navigation'
-import React from 'react'
-import { FollowAction } from './_components/Followactions'
-import {  isblockedByUser } from '@/lib/block-service'
 
 export default async function UserPage({
   params: { username },
 }: UserPageProps) {
   const user = await getUserByName(username)
-  if (!user) {
-    notFound()
+  if (!user || !user.stream) {
+    return notFound()
   }
-  const isfollowingUser = await isFollowingUser(user.id)
+  const isFollowing = await isFollowingUser(user.id)
   const isBlockedByUser = await isblockedByUser(user.id)
-  // const isBlockedByOtherUser = await areYouBlockedBySomeUser(user.id)
-  // if(isBlockedByOtherUser){
-  //   notFound()
-  // }
+  if (isBlockedByUser) {
+    return notFound()
+  }
+
   return (
-    <div>
-      <p>User:{user?.id}</p>
-      <p>{JSON.stringify(isfollowingUser)}</p>
-      <FollowAction
-        userId={user.id}
-        isBlocked={isBlockedByUser}
-        isFollowing={isfollowingUser}
+    <div
+    className=' overflow-y-hidden '
+    >
+      <StreamPlayer
+        user={user}
+        isFollowing={isFollowing}
+        stream={user.stream}
       />
     </div>
   )

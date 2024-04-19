@@ -51,12 +51,13 @@ interface URlCardProps {
 
 interface StreamPlayerProps {
     user: User & {
-        stream: Stream,
+        stream: Stream | null, // Allow nullable Stream
         _count: { followedBy: number }
     };
-    stream: Stream
+    stream: Stream // Ensure non-nullable Stream
     isFollowing: boolean
 }
+
 
 interface VideoComponentProps {
     hostName?: string

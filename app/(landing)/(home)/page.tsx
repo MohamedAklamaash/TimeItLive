@@ -1,10 +1,10 @@
 import React from 'react';
-import { UserButton } from '@clerk/nextjs';
 export default function Home() {
   return (
-    <div>
-      <h1>DashBoard</h1>
-       
+    <div
+    className=" h-full p-8 max-h-screen mx-auto "
+    >
+      <h1>Home Page</h1>
     </div>
   )
 }
