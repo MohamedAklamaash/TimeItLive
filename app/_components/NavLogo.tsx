@@ -19,7 +19,7 @@ export default function NavLogo() {
           </div>
           <div className={cn(font.className,"max-lg:hidden")}>
             <p className=' text-lg font-semibold '>TIME IT!</p>
-            <p className=' text-xs text-muted-foreground '>Let &apos Play</p>
+            <p className=' text-xs text-muted-foreground '>Let &apos;s Play</p>
           </div>
         </div>
       </Link>
